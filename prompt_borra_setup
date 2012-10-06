@@ -59,7 +59,7 @@ function prompt_borra_setup {
 
 function prompt_borra_precmd {
   local rprompt
-  PROMPT="$(prompt_borra_create_prompt)"
+  PROMPT="$(prompt:borra:create_prompt)"
   zdefault -b ':zoppo:prompt:borra' rprompt rprompt 'no'
   if [ "$rprompt" = yes ]; then
     RPROMPT='%(?..%F{red}%? ↵%f)'
@@ -68,7 +68,7 @@ function prompt_borra_precmd {
   fi
 }
 
-function prompt_borra_wrap_plugin {
+function prompt:borra:wrap_plugin {
   local prefix
   local suffix
 
@@ -78,18 +78,18 @@ function prompt_borra_wrap_plugin {
   print -n -- "$2$prefix$1$suffix"
 }
 
-function prompt_borra_render_item {
+function prompt:borra:render:item {
   local res
 
   res="$($1 "$2" 2>/dev/null)"
   case "$?" in
-    0) prompt_borra_wrap_plugin "$res" "$2" ;;
+    0) prompt:borra:wrap_plugin "$res" "$2" ;;
     23) print -n "$res" ;;
     *) return 1 ;;
   esac
 }
 
-function prompt_borra_render_plugins {
+function prompt:borra:render:plugins {
   local res=""
   local plugin
   local plugins
@@ -98,15 +98,15 @@ function prompt_borra_render_plugins {
   zstyle -a ':zoppo:prompt:borra' plugins plugins
 
   for plugin in ${plugins[*]}; do
-    res+="$(prompt_borra_render_item "+borra-$plugin" "$sep")"
+    res+="$(prompt:borra:render:item "+borra-$plugin" "$sep")"
     [ -z "$sep" -a ! -z "$res" ] && zdefault -s ':zoppo:prompt:borra' separator sep ' '
   done
 
   print -n "${res}"
 }
 
-function prompt_borra_create_prompt {
-  local plugins="$(prompt_borra_render_plugins)"
+function prompt:borra:create_prompt {
+  local plugins="$(prompt:borra:render:plugins)"
   local res=""
   local top
   local bottom
@@ -126,7 +126,7 @@ function prompt_borra_create_prompt {
 
 # Plugins {{{
 function +borra-return {
-  print -n -- '%(?..'"$(prompt_borra_wrap_plugin "%?" "$1")"')'
+  print -n -- '%(?..'"$(prompt:borra:wrap_plugin "%?" "$1")"')'
   return 23
 }
 
@@ -182,7 +182,7 @@ function +borra-vcs-info {
 
     zformat -f s "$fmt" b:"$backend" i:"$vcs_info_msg_0_"
 
-    res+="$(prompt_borra_wrap_plugin "$s" "$sep")"
+    res+="$(prompt:borra:wrap_plugin "$s" "$sep")"
 
     [ -z "$sep" -a ! -z "$res" ] && zdefault -s ':zoppo:prompt:borra' separator sep ' '
   done
