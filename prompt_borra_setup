@@ -59,7 +59,7 @@ function prompt_borra_setup {
 
 function prompt_borra_precmd {
   local rprompt
-  PROMPT="$(prompt:borra:create_prompt)"
+  PROMPT="$(prompt:borra:create-prompt)"
   zdefault -b ':zoppo:prompt:borra' rprompt rprompt 'no'
   if [ "$rprompt" = yes ]; then
     RPROMPT='%(?..%F{red}%? ↵%f)'
