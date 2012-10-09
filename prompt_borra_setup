@@ -150,10 +150,11 @@ function +borra-date {
   date +"$fmt" | tr -d "\n"
 }
 
-function +borra-rvm-info {
-  (( $+functions[rvm] )) || return 1
-  local rb="$(rvm-prompt s)"
-  [ -z "${rb}" ] && echo "$(rvm-prompt i v p r)" || echo "${rb}"
+function +borra-ruby-info {
+  (( $+functions[ruby:info] )) || return 1
+  local fmt
+  zdefault -s ':zoppo:prompt:borra:plugin:ruby-info' format fmt '%e-%v-p%p (%P)'
+  ruby:info "$fmt"
 }
 
 function +vi-git-st {
@@ -194,7 +195,7 @@ function +borra-vcs-info {
 
 # Themes {{{
 function prompt:borra:theme:bluesky {
-  zdefault ':zoppo:prompt:borra' plugins 'userhost' 'pts' 'rvm-info' 'vcs-info'
+  zdefault ':zoppo:prompt:borra' plugins 'userhost' 'pts' 'ruby-info' 'vcs-info'
 
   zstyle ':zoppo:prompt:borra' prefix '%F{blue}(%f'
   zstyle ':zoppo:prompt:borra' suffix '%F{blue})%f'
