@@ -206,6 +206,8 @@ function prompt:borra:theme:bluesky {
   zstyle ':zoppo:prompt:borra' rprompt 'yes'
 
   zstyle ':zoppo:prompt:borra:plugin:userhost' format '%U%F{blue}@%f%h'
+  zstyle ':zoppo:prompt:borra:plugin:ruby-info' format '%e-%v-p%p%F{blue}|%f%P'
+  zstyle ':zoppo:prompt:borra:plugin:vcs' format '%b%F{blue}|%f%i'
 }
 
 function prompt:borra:theme:darkblood {
