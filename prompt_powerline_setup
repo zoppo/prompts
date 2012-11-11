@@ -144,7 +144,6 @@ function prompt:powerline:render-item {
       local -A old && prompt:powerline:colors-for "$previous" old
 
       print -n " %{$bg[$old[bg]]%}%{$fg[$colors[bg]]%}\u2b82"
-
     fi
   fi
 
