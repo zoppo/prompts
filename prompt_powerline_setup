@@ -70,7 +70,7 @@ function prompt:powerline:colors-for {
 
   if (( $+3 )); then
     while (( $+2 )); do
-      zstyle ":zoppo:prompt:powerline:plugin:${name}:colors" "$2" "$3"
+      zdefault ":zoppo:prompt:powerline:plugin:${name}:colors" "$2" "$3"
       shift 2
     done
   else
