@@ -70,7 +70,7 @@ function prompt:powerline:colors-for {
 
   if (( $+3 )); then
     while (( $+2 )); do
-      zstyle ":zoppo:prompt:powerline:plugin:${name}:setup" "$2" "$3"
+      zstyle ":zoppo:prompt:powerline:plugin:${name}:colors" "$2" "$3"
       shift 2
     done
   else
@@ -79,8 +79,8 @@ function prompt:powerline:colors-for {
 
     local element
     for element (fg bg fx); do
-      if ! zstyle -T ":zoppo:prompt:powerline:plugin:${name}:setup" "$element"; then
-        zstyle -s ":zoppo:prompt:powerline:plugin:${name}:setup" "$element" "$2[$element]"
+      if ! zstyle -T ":zoppo:prompt:powerline:plugin:${name}:colors" "$element"; then
+        zstyle -s ":zoppo:prompt:powerline:plugin:${name}:colors" "$element" "$2[$element]"
       fi
     done
   fi
