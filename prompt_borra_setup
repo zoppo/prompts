@@ -124,6 +124,46 @@ function prompt:borra:create-prompt {
   print -n "${res}${prompt}"
 }
 
+function prompt_borra_preview {
+  (
+    local ctx
+    local -a tmp
+    if (( $# > 0 )); then
+      zstyle -g tmp
+      for ctx ("$tmp[@]"); do
+        if [[ "$ctx" == :zoppo:prompt:borra:* || "$ctx" == :zoppo:prompt:borra ]]; then
+          zstyle -d "$ctx"
+        fi
+      done
+      prompt_preview_theme 'borra' "$@"
+    else
+      zstyle -g tmp
+      for ctx ("$tmp[@]"); do
+        if [[ "$ctx" == :zoppo:prompt:borra:* || "$ctx" == :zoppo:prompt:borra ]]; then
+          zstyle -d "$ctx"
+        fi
+      done
+      prompt_preview_theme 'borra'
+      print
+      zstyle -g tmp
+      for ctx ("$tmp[@]"); do
+        if [[ "$ctx" == :zoppo:prompt:borra:* || "$ctx" == :zoppo:prompt:borra ]]; then
+          zstyle -d "$ctx"
+        fi
+      done
+      prompt_preview_theme 'borra' 'bluesky'
+      print
+      zstyle -g tmp
+      for ctx ("$tmp[@]"); do
+        if [[ "$ctx" == :zoppo:prompt:borra:* || "$ctx" == :zoppo:prompt:borra ]]; then
+          zstyle -d "$ctx"
+        fi
+      done
+      prompt_preview_theme 'borra' 'darkblood'
+    fi
+  )
+}
+
 # Plugins {{{
 function +borra-return {
   print -n -- '%(?..'"$(prompt:borra:wrap-plugin "%?" "$1")"')'
