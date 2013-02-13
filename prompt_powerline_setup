@@ -1,5 +1,8 @@
 # Configuration
 # -------------
+# :zoppo:prompt:powerline
+#   new-codepoints - bool - use new font codepoints
+#
 # :zoppo:prompt:powerline:blank
 #   above - bool - leaves an empty line above the prompt
 #   below - bool - makes you type the command below the powerline
@@ -15,6 +18,24 @@ function prompt_powerline_setup {
   hooks:add precmd prompt_powerline_precmd
 
   prompt_opts=(cr percent subst)
+
+  if zstyle -t ':zoppo:prompt:powerline' new-codepoints; then
+    POWERLINE_RIGHT_ARROW=$'\uE0B1'
+    POWERLINE_LEFT_ARROW=$'\uE0B3'
+
+    POWERLINE_RIGHT_FILLED_ARROW=$'\uE0B0'
+    POWERLINE_LEFT_FILLED_ARROW=$'\uE0B2'
+
+    POWERLINE_BRANCH=$'\uE0A0'
+  else
+    POWERLINE_RIGHT_ARROW=$'\u2B81'
+    POWERLINE_LEFT_ARROW=$'\u2B83'
+
+    POWERLINE_RIGHT_FILLED_ARROW=$'\u2B80'
+    POWERLINE_LEFT_FILLED_ARROW=$'\u2B82'
+
+    POWERLINE_BRANCH=$'\u2B60'
+  fi
 
   local -a left
   zdefault -a ':zoppo:prompt:powerline:plugins' left left \
@@ -110,7 +131,7 @@ function prompt:powerline:render-prompt {
     local previous && zstyle -s ':zoppo:prompt:powerline:internal:item' previous previous
     local -A colors && prompt:powerline:colors-for "$previous" colors
 
-    print -n " %{$fg[$colors[bg]]%}%{$bg[default]%}\u2b80%{$fg[default]%}"
+    print -n " %{$fg[$colors[bg]]%}%{$bg[default]%}$POWERLINE_RIGHT_FILLED_ARROW%{$fg[default]%}"
   fi
 }
 
@@ -134,16 +155,16 @@ function prompt:powerline:render-item {
       local previous && zstyle -s ':zoppo:prompt:powerline:internal:item' previous previous
       local -A old && prompt:powerline:colors-for "$previous" old
 
-      print -n " %{$fg[$old[bg]]%}%{$bg[$colors[bg]]%}\u2b80 "
+      print -n " %{$fg[$old[bg]]%}%{$bg[$colors[bg]]%}$POWERLINE_RIGHT_FILLED_ARROW "
     fi
   else
     if prompt:powerline:item-is first; then
-      print -n "%{$fg[$colors[bg]]%}%{$bg[default]%}\u2b82"
+      print -n "%{$fg[$colors[bg]]%}%{$bg[default]%}$POWERLINE_LEFT_FILLED_ARROW"
     else
       local previous && zstyle -s ':zoppo:prompt:powerline:internal:item' previous previous
       local -A old && prompt:powerline:colors-for "$previous" old
 
-      print -n " %{$bg[$old[bg]]%}%{$fg[$colors[bg]]%}\u2b82"
+      print -n " %{$bg[$old[bg]]%}%{$fg[$colors[bg]]%}$POWERLINE_LEFT_FILLED_ARROW"
     fi
   fi
 
@@ -163,7 +184,7 @@ function prompt:powerline:render-item {
 
   if prompt:powerline:item-is last; then
     if prompt:powerline:side-is left; then
-      print -n " %{$fg[$colors[bg]]%}%{$bg[default]%}\u2b80%{$fg[default]%}"
+      print -n " %{$fg[$colors[bg]]%}%{$bg[default]%}$POWERLINE_RIGHT_FILLED_ARROW%{$fg[default]%}"
     else
       print -n "%{ %}%{$fg[default]%}%{$bg[default]%}"
     fi
@@ -176,9 +197,9 @@ function prompt:powerline:render-separator {
   print -n ' '
 
   if prompt:powerline:side-is left; then
-    print -n $'\u2b81'
+    print -n $POWERLINE_RIGHT_ARROW
   else
-    print -n $'\u2b83'
+    print -n $POWERLINE_LEFT_ARROW
   fi
 
   print -n ' '
@@ -248,7 +269,7 @@ function +powerline:path {
       vcs_info || continue
       [ -n "$vcs_info_msg_0_" ] || continue
 
-      print -n " \u2b60 "
+      print -n " $POWERLINE_BRANCH "
       print -n "$vcs_info_msg_0_"
 
       break
