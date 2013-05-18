@@ -47,12 +47,12 @@ function prompt_borra_setup {
   # setup the passed theme
   (( $+1 )) && "prompt:borra:theme:$1"
 
-  zstyle ':vcs_info:*' check-for-changes 'true'
-  zstyle ':vcs_info:*' unstagedstr ' %F{yellow}⚑%f'
-  zstyle ':vcs_info:*' stagedstr ' %F{green}⚑%f'
-  zstyle ':vcs_info:*' actionformats '%b%u%c [%a]'
-  zstyle ':vcs_info:*' formats '%b%u%c'
-  zstyle ':vcs_info:*+set-message:*' hooks 'git-st'
+  zdefault ':vcs_info:*' check-for-changes 'true'
+  zdefault ':vcs_info:*' unstagedstr ' %F{yellow}⚑%f'
+  zdefault ':vcs_info:*' stagedstr ' %F{green}⚑%f'
+  zdefault ':vcs_info:*' actionformats '%b%u%c [%a]'
+  zdefault ':vcs_info:*' formats '%b%u%c'
+  zdefault ':vcs_info:*+set-message:*' hooks 'git-st'
 
   prompt_borra_precmd
 }
