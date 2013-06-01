@@ -58,14 +58,8 @@ function prompt_borra_setup {
 }
 
 function prompt_borra_precmd {
-  local rprompt
   PROMPT="$(prompt:borra:create-prompt)"
-  zdefault -b ':zoppo:prompt:borra' rprompt rprompt 'no'
-  if [ "$rprompt" = yes ]; then
-    RPROMPT='%(?..%F{red}%? ↵%f)'
-  else
-    RPROMPT=''
-  fi
+  zstyle -s ':zoppo:prompt:borra' rprompt RPROMPT
 }
 
 function prompt:borra:wrap-plugin {
@@ -243,7 +237,7 @@ function prompt:borra:theme:bluesky {
   zstyle ':zoppo:prompt:borra' top '%F{blue}╭-%f'
   zstyle ':zoppo:prompt:borra' bottom '%F{blue}╰─%f'
   zstyle ':zoppo:prompt:borra' prompt '%F{blue}(%f%B%$((COLUMNS / 2))<...<%~%<<%b%F{blue})%F{yellow}>%f '
-  zstyle ':zoppo:prompt:borra' rprompt 'yes'
+  zstyle ':zoppo:prompt:borra' rprompt '%(?..%F{red}%? ↵%f)'
 
   zstyle ':zoppo:prompt:borra:plugin:userhost' format '%U%F{blue}@%f%h'
   zstyle ':zoppo:prompt:borra:plugin:ruby-info' format '%e-%v-p%p%F{blue}|%f%P'
@@ -259,7 +253,6 @@ function prompt:borra:theme:darkblood {
   zstyle ':zoppo:prompt:borra' top '%F{red}┌%F{red}'
   zstyle ':zoppo:prompt:borra' bottom '%F{red}└%F{red}'
   zstyle ':zoppo:prompt:borra' prompt '%F{red}[%F{white}%B%$((COLUMNS / 2))<...<%~%<<%b%F{red}]>%f '
-  zstyle ':zoppo:prompt:borra' rprompt 'no'
 
   zstyle ':zoppo:prompt:borra:plugin:vcs' format '%b%%b%F{red}|%B%F{white}%i'
   zstyle ':zoppo:prompt:borra:plugin:userhost' format '%F{white}%B%u%b%F{red}@%F{white}%B%h%b'
