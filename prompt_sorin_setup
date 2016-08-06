@@ -8,9 +8,6 @@
 #   http://i.imgur.com/nBEEZ.png
 #
 
-# Load dependencies.
-pmodload 'helper'
-
 function prompt_sorin_pwd {
   local pwd="${PWD/#$HOME/~}"
 
