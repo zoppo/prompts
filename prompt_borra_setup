@@ -247,12 +247,12 @@ function prompt:borra:theme:bluesky {
 function prompt:borra:theme:darkblood {
   zdefault ':zoppo:prompt:borra' plugins 'userhost' 'pts' 'vcs-info' 'return'
 
-  zstyle ':zoppo:prompt:borra' prefix '%F{red}[%F{white}%B'
-  zstyle ':zoppo:prompt:borra' suffix '%b%F{red}]%f'
-  zstyle ':zoppo:prompt:borra' separator ' '
-  zstyle ':zoppo:prompt:borra' top '%F{red}┌%F{red}'
-  zstyle ':zoppo:prompt:borra' bottom '%F{red}└%F{red}'
-  zstyle ':zoppo:prompt:borra' prompt '%F{red}[%F{white}%B%$((COLUMNS / 2))<...<%~%<<%b%F{red}]>%f '
+  zstyle   ':zoppo:prompt:borra' prefix '%F{red}[%F{white}%B'
+  zstyle   ':zoppo:prompt:borra' suffix '%b%F{red}]%f'
+  zstyle   ':zoppo:prompt:borra' separator ' '
+  zstyle   ':zoppo:prompt:borra' top '%F{red}┌%F{red}'
+  zstyle   ':zoppo:prompt:borra' bottom '%F{red}└%F{red}'
+  zdefault ':zoppo:prompt:borra' prompt '%F{red}[%F{white}%B%$((COLUMNS / 2))<...<%~%<<%b%F{red}]>%f '
 
   zstyle ':zoppo:prompt:borra:plugin:vcs' format '%b%%b%F{red}|%B%F{white}%i'
   zstyle ':zoppo:prompt:borra:plugin:userhost' format '%F{white}%B%u%b%F{red}@%F{white}%B%h%b'
