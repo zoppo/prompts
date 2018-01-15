@@ -231,31 +231,31 @@ function +borra-vcs-info {
 function prompt:borra:theme:bluesky {
   zdefault ':zoppo:prompt:borra' plugins 'userhost' 'pts' 'ruby-info' 'vcs-info'
 
-  zstyle ':zoppo:prompt:borra' prefix '%F{blue}(%f'
-  zstyle ':zoppo:prompt:borra' suffix '%F{blue})%f'
-  zstyle ':zoppo:prompt:borra' separator '%F{blue}-%f'
-  zstyle ':zoppo:prompt:borra' top '%F{blue}╭-%f'
-  zstyle ':zoppo:prompt:borra' bottom '%F{blue}╰─%f'
-  zstyle ':zoppo:prompt:borra' prompt '%F{blue}(%f%B%$((COLUMNS / 2))<...<%~%<<%b%F{blue})%F{yellow}>%f '
-  zstyle ':zoppo:prompt:borra' rprompt '%(?..%F{red}%? ↵%f)'
+  zdefault ':zoppo:prompt:borra' prefix '%F{blue}(%f'
+  zdefault ':zoppo:prompt:borra' suffix '%F{blue})%f'
+  zdefault ':zoppo:prompt:borra' separator '%F{blue}-%f'
+  zdefault ':zoppo:prompt:borra' top '%F{blue}╭-%f'
+  zdefault ':zoppo:prompt:borra' bottom '%F{blue}╰─%f'
+  zdefault ':zoppo:prompt:borra' prompt '%F{blue}(%f%B%$((COLUMNS / 2))<...<%~%<<%b%F{blue})%F{yellow}>%f '
+  zdefault ':zoppo:prompt:borra' rprompt '%(?..%F{red}%? ↵%f)'
 
-  zstyle ':zoppo:prompt:borra:plugin:userhost' format '%U%F{blue}@%f%h'
-  zstyle ':zoppo:prompt:borra:plugin:ruby-info' format '%e-%v-p%p%F{blue}|%f%P'
-  zstyle ':zoppo:prompt:borra:plugin:vcs' format '%b%F{blue}|%f%i'
+  zdefault ':zoppo:prompt:borra:plugin:userhost' format '%U%F{blue}@%f%h'
+  zdefault ':zoppo:prompt:borra:plugin:ruby-info' format '%e-%v-p%p%F{blue}|%f%P'
+  zdefault ':zoppo:prompt:borra:plugin:vcs' format '%b%F{blue}|%f%i'
 }
 
 function prompt:borra:theme:darkblood {
   zdefault ':zoppo:prompt:borra' plugins 'userhost' 'pts' 'vcs-info' 'return'
 
-  zstyle   ':zoppo:prompt:borra' prefix '%F{red}[%F{white}%B'
-  zstyle   ':zoppo:prompt:borra' suffix '%b%F{red}]%f'
-  zstyle   ':zoppo:prompt:borra' separator ' '
-  zstyle   ':zoppo:prompt:borra' top '%F{red}┌%F{red}'
-  zstyle   ':zoppo:prompt:borra' bottom '%F{red}└%F{red}'
-  zdefault ':zoppo:prompt:borra' prompt '%F{red}[%F{white}%B%$((COLUMNS / 2))<...<%~%<<%b%F{red}]>%f '
+  zdefault ':zoppo:prompt:borra' prefix '%F{red}[%B%F{255}'
+  zdefault ':zoppo:prompt:borra' suffix '%F{red}%b]%f'
+  zdefault ':zoppo:prompt:borra' separator ' '
+  zdefault ':zoppo:prompt:borra' top '%F{red}┌%F{red}'
+  zdefault ':zoppo:prompt:borra' bottom '%F{red}└%F{red}'
+  zdefault ':zoppo:prompt:borra' prompt '%F{red}[%F{255}%B%$((COLUMNS / 2))<...<%~%<<%b%F{red}]>%f '
 
-  zstyle ':zoppo:prompt:borra:plugin:vcs' format '%b%%b%F{red}|%B%F{white}%i'
-  zstyle ':zoppo:prompt:borra:plugin:userhost' format '%F{white}%B%u%b%F{red}@%F{white}%B%h%b'
+  zdefault ':zoppo:prompt:borra:plugin:vcs' format '%b%%b%F{red}|%B%F{255}%i'
+  zdefault ':zoppo:prompt:borra:plugin:userhost' format '%F{255}%B%u%b%F{red}@%F{255}%B%h%b'
 }
 # }}}
 
