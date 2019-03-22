@@ -233,8 +233,8 @@ function prompt:borra:theme:bluesky {
 
   zdefault ':zoppo:prompt:borra' prefix '%F{blue}(%f'
   zdefault ':zoppo:prompt:borra' suffix '%F{blue})%f'
-  zdefault ':zoppo:prompt:borra' separator '%F{blue}-%f'
-  zdefault ':zoppo:prompt:borra' top '%F{blue}╭-%f'
+  zdefault ':zoppo:prompt:borra' separator '%F{blue}─%f'
+  zdefault ':zoppo:prompt:borra' top '%F{blue}╭─%f'
   zdefault ':zoppo:prompt:borra' bottom '%F{blue}╰─%f'
   zdefault ':zoppo:prompt:borra' prompt '%F{blue}(%f%B%$((COLUMNS / 2))<...<%~%<<%b%F{blue})%F{yellow}>%f '
   zdefault ':zoppo:prompt:borra' rprompt '%(?..%F{red}%? ↵%f)'
